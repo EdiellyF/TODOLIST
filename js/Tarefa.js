@@ -83,9 +83,9 @@ export class TarefaViewer {
                 // Botão de remover tarefa
                 const tdRemove  = document.createElement('td');
                 const removeButton = document.createElement('button');
-                removeButton.className = 'btn btn-danger';
+                // removeButton.className = 'btn btn-danger';
                 removeButton.id = 'remover'
-                removeButton.textContent = 'Remover';
+                // removeButton.textContent = 'Remover';
                 removeButton.dataset.id = t.id;
                 tdRemove.appendChild(removeButton);
                 tr.appendChild(tdRemove);
