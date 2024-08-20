@@ -107,4 +107,12 @@ h1 {
 
 #remover {
     background-image: url(./img/lixeira.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white; /* Cor do texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
