@@ -1,0 +1,106 @@
+
+body {
+    background-image: url('background.jpg');
+    background-size: cover; /* Faz a imagem cobrir todo o corpo */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-position: center center; /* Centraliza a imagem */
+    background-attachment: fixed; /* Faz com que a imagem fique fixa ao rolar a página */
+    height: 100vh; 
+    margin: 0; 
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.043); 
+   
+}
+
+.nav-link {
+    color: #f5f5f5; /* Altere para a cor desejada */
+}
+
+.nav-link:hover {
+    color: #fceb03; /* Altere a cor ao passar o mouse */
+}
+
+.tab-content {
+    background-color: rgba(255, 255, 255, 0.193); /* Fundo transparente para abas */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo dos inputs */
+}
+
+.btn-primary {
+    background-color: #512da8;
+    border-color: #512da8;
+}
+
+.btn-primary:hover {
+    background-color: #3f1d8c;
+    border-color: #3f1d8c;
+}
+
+.display-4 {
+    font-weight: 100;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 1.8rem;
+    }
+
+    .nav-link {
+        color: #fef8c1;
+    }
+}
+
+
+/* Remove a linha inferior das abas */
+.nav-tabs {
+    border-bottom: none;
+}
+
+/* Remove a borda padrão das abas */
+.nav-tabs .nav-link {
+    border: none;
+    background-color: transparent; /* Mantém o fundo transparente por padrão */
+    color: #fff; /* Cor do texto das abas */
+    padding: 10px 15px; /* Espaçamento interno */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transições suaves */
+}
+
+/* Estilo para a aba ativa */
+.nav-tabs .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3); /* Fundo com opacidade para a aba ativa */
+    color:#FBFAFF    ; /* Cor do texto da aba ativa */
+    border-bottom: 2px solid #fff; /* Linha inferior visível na aba ativa */
+}
+
+/* Estilo para a aba quando está sendo passada o mouse */
+.nav-tabs .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo com opacidade ao passar o mouse */
+    color: #9a9cfd; /* Cor do texto ao passar o mouse */
+}
+
+.alert {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid;
+    font-family: Arial, sans-serif;
+    margin-bottom: 4px;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+

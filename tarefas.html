@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <title>Orçamento Pessoal - Tarefas</title>
+
+    <!-- Bootstrap início -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Bootstrap fim -->
+     
+    <link rel="stylesheet" href="./assets/css/tarefas.css">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark mb-5 p-5" id="navbar">
+        <div class="container">
+            <div class="row">
+            <a class="navbar-brand" href="#">
+            
+            </a>
+        </div>
+
+        </div>
+    </nav>
+    <div id="alert"></div>
+    
+    <div class="container">
+        <ul class="nav nav-tabs" id="taskTabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="cadastro-tab" data-toggle="tab" href="#cadastro" role="tab" aria-controls="cadastro" aria-selected="true">Cadastro de Tarefas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="consulta-tab" data-toggle="tab" href="#consulta" role="tab" aria-controls="consulta" aria-selected="false">Consulta de Tarefas</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="taskTabsContent">
+            <!-- Aba de Cadastro de Tarefas -->
+            <div class="tab-pane fade show active" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
+                <div class="row">
+                    <div class="col mb-5">
+                        <h1 class="display-4" id="nomeUsuario"></div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Titulo" id="TituloCadastro" />
+                    </div>
+
+
+                    <div class="col-md-2">
+                        <select class="form-control" id="anoCadastro">
+                            <option value="">Ano</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <select class="form-control" id="mesCadastro">
+                            <option value="">Mês</option>
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Dia" id="diaCadastro" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Descrição" id="descricaoCadastro" />
+                    </div>
+
+                    <div class="col-md-2 d-flex justify-content-end">
+                        <button class="btn btn-primary" id="cadastrartarefa">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aba de Consulta de Tarefas -->
+            <div class="tab-pane fade" id="consulta" role="tabpanel" aria-labelledby="consulta-tab">
+                <div class="row mb-5">
+                    <div class="col">
+                        <h1 class="display-4">Consulta de Lista de Tarefas</h1>
+                    </div>
+                </div>
+
+                <div class="row mb-2 cadastro">
+                    <div class="col-md-2">
+                        <select class="form-control" id="anoConsulta">
+                            <option value="">Ano</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <select class="form-control" id="mesConsulta">
+                            <option value="">Mês</option>
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" placeholder="Dia" id="diaConsulta" />
+                    </div>
+                </div>
+
+                <div class="row mb-5">
+                  
+
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" placeholder="Descrição" id="descricaoConsulta" />
+                    </div>
+                  
+
+                    <div class="col-md-2 d-flex justify-content-end" id="buttons">
+                        <button type="button" class="btn btn-primary" id="pesquisar">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>titulo</th>
+                                    <th>descrição</th>
+                                    <th>data</th>
+                                    <th>concluido?</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="viewTarefas">
+                                <!-- Conteúdo das tarefas será inserido aqui -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="user-info"></div>
+
+    <script type="module" src="./js/paginatarefa.js"></script>
+
+</body>
+</html>
