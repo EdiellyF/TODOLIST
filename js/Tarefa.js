@@ -181,6 +181,7 @@ export class TarefaViewer {
             const buttons = document.getElementById('buttons');
             const btnAtualizar = document.createElement('button');
             btnAtualizar.className = 'btn btn-success'; 
+            btnAtualizar.textContent = 'Atualizar';
             btnAtualizar.id = 'btnAtualizar'; 
        
             buttons.appendChild(btnAtualizar);
