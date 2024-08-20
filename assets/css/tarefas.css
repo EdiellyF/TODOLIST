@@ -106,7 +106,7 @@ h1 {
 
 
 #remover {
-    background-image: url(./img/lixeira.png);
+    background-image: url(/img/lixeira.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
