@@ -103,9 +103,8 @@ export class TarefaViewer {
           // Botão de adicionar tarefa
           const tdAdicionar = document.createElement('td');
           const editarTarefas = document.createElement('button');
-          editarTarefas.className = 'btn btn-sucess';
           editarTarefas.id = 'editar'
-          editarTarefas.textContent = 'Editar';
+         
           editarTarefas.dataset.id = t.id;
           tdAdicionar.appendChild(editarTarefas);
           tr.appendChild(tdAdicionar);

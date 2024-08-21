@@ -106,13 +106,25 @@ h1 {
 
 
 #remover {
-    background-image: url('lixeira.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: white; /* Cor do texto */
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    background-image: url('excluir.png');
+    background-size: contain;  
+    background-repeat: no-repeat; 
+    background-position: center; 
+    width: 30px;
+    height: 40px; 
     cursor: pointer;
+    background-color: transparent; 
+    border: none; 
+}
+
+#editar {
+    background-image: url('editar.png');
+    background-size: contain;  
+    background-repeat: no-repeat; 
+    background-position: center; 
+    width: 30px;
+    height: 40px; 
+    cursor: pointer;
+    background-color: transparent; 
+    border: none; 
 }
