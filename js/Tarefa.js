@@ -18,13 +18,15 @@ export class Tarefa {
         this.#id = valor;
     }
 
-  
-    
+
     // Método para marcar a tarefa como concluída
     marcarConcluida() {
         this.#concluido = true;
     }
 
+    marcarnaoConcluida() {
+        this.#concluido = false;
+    } 
 
     listarTarefas(){
         return {
@@ -47,80 +49,37 @@ export class TarefaViewer {
     exibirTarefaspeloId(id) {
         const container = document.getElementById(id);
         container.innerHTML = "";
-    
-        if (!Array.isArray(this.tarefa)) {
-            console.error('Erro: this.tarefa não é um array.');
-            return;
-        }
         
         for (const t of this.tarefa) {
                 const tr = document.createElement('tr');
 
-                const tdId = document.createElement('td');
-                tdId.className = 'id-task'
-                tdId.textContent = t.id;
-                tr.appendChild(tdId);
-
-                const tdTitulo = document.createElement('td');
-                tdTitulo.textContent = t.titulo;
-                tdTitulo.className = 'titulo-task'
-                tr.appendChild(tdTitulo);
-
-                const tdDescricao = document.createElement('td');
-                tdDescricao.textContent = t.descricao;
-                tr.appendChild(tdDescricao);
-
-                const tdData = document.createElement('td');
-                tdData.textContent = t.data;
-                tdData.className = 'id-data'
-                tr.appendChild(tdData);
-
-                const tdConcluido = document.createElement('td');
-                tdConcluido.textContent = t.concluido ? 'Sim' : 'Não';
-                tr.appendChild(tdConcluido);
-
-
-                // Botão de remover tarefa
-                const tdRemove  = document.createElement('td');
-                const removeButton = document.createElement('button');
-                // removeButton.className = 'btn btn-danger';
-                removeButton.id = 'remover'
-                // removeButton.textContent = 'Remover';
-                removeButton.dataset.id = t.id;
-                tdRemove.appendChild(removeButton);
-                tr.appendChild(tdRemove);
-
-   
-           
+                tr.innerHTML = `
+                <td class="id-task">${t.id}</td>
+                <td class="titulo-task">${t.titulo}</td>
+                <td>${t.descricao}</td>
+                <td class="id-data">${t.data}</td>
+                <td class="concluido-task">${t.concluido ? "Sim" : "não"}</td>
+                <td>
+                    <button id="remover" data-id="${t.id}"></button>
+                </td>
+                <td>
+                <button id="editar" data-id="${t.id}"></button>
+            `;
             
+            container.appendChild(tr);
+
         // Adiciona o evento de clique ao botão de remoção
-        removeButton.addEventListener('click', () => {
+        document.getElementById('remover').addEventListener('click', () => {
               this.removerTarefa(t.id);
               container.removeChild(tr);
         });
 
-
-          // Botão de adicionar tarefa
-          const tdAdicionar = document.createElement('td');
-          const editarTarefas = document.createElement('button');
-          editarTarefas.id = 'editar'
-         
-          editarTarefas.dataset.id = t.id;
-          tdAdicionar.appendChild(editarTarefas);
-          tr.appendChild(tdAdicionar);
-
-
-          editarTarefas.addEventListener('click',() => {
-              this.editarTarefas(t.id, t.titulo, t.descricao, t.data);
+        // Adiciona o evento de clique ao botão de edição
+        document.getElementById('editar').addEventListener('click',() => {
+              this.editarTarefas(t.id, t.titulo, t.descricao, t.data, t.concluido);
           })
-
                 container.appendChild(tr);
-
         }
-
-
-
-
     }
 
     removerTarefa(tarefaId) {
@@ -140,14 +99,11 @@ export class TarefaViewer {
             return user;
         });
 
-        // Atualize o `localStorage` com os dados novos
-        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
-        localStorage.setItem('listausers', JSON.stringify(usuariosAtualizados));
+           this.atualizarDadosDoLocalStorange(usuarioLogado, usuariosAtualizados)
     }
 
-    editarTarefas(id,titulo,descricao,data){
-        const elementosParaRemover = document.querySelectorAll('#pesquisar, #editar, #remover');
-        elementosParaRemover.forEach(elemento => elemento.remove());   
+    editarTarefas(id,titulo,descricao,data, concluido){
+        document.querySelectorAll('#pesquisar, #editar, #remover').forEach(elemento => elemento.remove());   
       
         const div = document.getElementsByClassName('cadastro')[0];
         const col = document.createElement('div');
@@ -156,34 +112,56 @@ export class TarefaViewer {
 
         const classe_titulo = document.createElement('input');
         classe_titulo.className = 'form-control titulo'
-        classe_titulo.placeholder = 'Titulo'
+        classe_titulo.placeholder = 'Título'
         classe_titulo.type = 'text';
         col.appendChild(classe_titulo);
+        
+
+        const opcoes = [
+            { value: "Sim", texto: 'Sim' },
+            { value: "não", texto: 'não' }
+        ];
+
+        const selectElement = document.createElement('select');
+        selectElement.className = 'form-control';
+        selectElement.id = 'opcoes';
+
+        opcoes.forEach(opcao => {
+            const optionElement = document.createElement('option');
+            optionElement.value = opcao.value;
+            optionElement.textContent = opcao.texto;
+            selectElement.appendChild(optionElement);
+        });
+
+       
+      const atualizarConclusao =  document.querySelector('#concluido')
+      atualizarConclusao.appendChild(selectElement);
+
 
         const tarefa = {
             id: id,
             titulo: titulo,
             data: data,
-            descricao:descricao
+            descricao:descricao, 
+            concluido: concluido
         };
 
         const [dia, mes, ano] = tarefa.data.split('/');
+      
 
         // Preencher os campos de entrada com os dados da tarefa
         document.getElementById('diaConsulta').value = dia;
         document.getElementById('mesConsulta').value = mes;
         document.getElementById('anoConsulta').value = ano;
         document.getElementById('descricaoConsulta').value = tarefa.descricao;
+        document.getElementById('opcoes').value = tarefa.concluido;
         document.getElementsByClassName('titulo')[0].value = tarefa.titulo; 
         
-             //criar botao de atualizar tarefa
-            const buttons = document.getElementById('buttons');
-            const btnAtualizar = document.createElement('button');
-            btnAtualizar.className = 'btn btn-success'; 
-            btnAtualizar.textContent = 'Atualizar';
-            btnAtualizar.id = 'btnAtualizar'; 
-       
-            buttons.appendChild(btnAtualizar);
+                //criar botao de atualizar tarefa
+                const buttons = document.getElementById('buttons');
+                const btnAtualizar = document.createElement('button');
+                btnAtualizar.id = 'btnAtualizar'; 
+                buttons.appendChild(btnAtualizar);
 
             btnAtualizar.addEventListener('click', () => {
                     // Obtém o usuário logado e a lista de usuários
@@ -197,7 +175,14 @@ export class TarefaViewer {
                         ${document.getElementById('mesConsulta').value}/
                         ${document.getElementById('anoConsulta').value} `
                     );
+                    tarefaAtualizada.marcarConcluida(selectElement.value)
                     tarefaAtualizada.setId(id);
+                   
+                    if(selectElement.value === 'Sim'){
+                        tarefaAtualizada.marcarConcluida();
+                    }else{
+                        tarefaAtualizada.marcarnaoConcluida()
+                    }
                     
                     if (Array.isArray(usuarioLogado.tarefas)) {
                         usuarioLogado.tarefas = usuarioLogado.tarefas.map(tarefa =>
@@ -211,15 +196,9 @@ export class TarefaViewer {
                         user.id === usuarioLogado.id ? usuarioLogado : user
                     );
                 
-                    localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
-                    localStorage.setItem('listausers', JSON.stringify(usuariosAtualizados));
-
-                    location.reload(true);
+                  this.atualizarDadosDoLocalStorange(usuarioLogado, usuariosAtualizados)
+                
             });
-            
-    
-
-
 
         };
 
@@ -241,6 +220,12 @@ export class TarefaViewer {
             return tarefasFiltradas;
         }
         
+        atualizarDadosDoLocalStorange(usuarioLogado, usuariosAtualizados){
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+            localStorage.setItem('listausers', JSON.stringify(usuariosAtualizados));
+
+            location.reload(true);
+        }
 
     }
 

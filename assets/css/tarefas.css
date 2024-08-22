@@ -128,3 +128,14 @@ h1 {
     background-color: transparent; 
     border: none; 
 }
+#btnAtualizar {
+    background-image: url('pen.png');
+    background-size: contain;  
+    background-repeat: no-repeat; 
+    background-position: center; 
+    width: 30px;
+    height: 40px; 
+    cursor: pointer;
+    background-color: transparent; 
+    border: none; 
+}
