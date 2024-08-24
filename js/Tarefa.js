@@ -66,21 +66,21 @@ export class TarefaViewer {
                 <button id="editar" data-id="${t.id}"></button>
             `;
             
-            container.appendChild(tr);
-
+            container.appendChild(tr)
+         
         // Adiciona o evento de clique ao botão de remoção
         document.getElementById('remover').addEventListener('click', () => {
-              this.removerTarefa(t.id);
-              container.removeChild(tr);
-        });
+            this.removerTarefa(t.id);
+            container.removeChild(tr);
+      });
 
-        // Adiciona o evento de clique ao botão de edição
-        document.getElementById('editar').addEventListener('click',() => {
-              this.editarTarefas(t.id, t.titulo, t.descricao, t.data, t.concluido);
-          })
-                container.appendChild(tr);
-        }
-    }
+      // Adiciona o evento de clique ao botão de edição
+      document.getElementById('editar').addEventListener('click',() => {
+            this.editarTarefas(t.id, t.titulo, t.descricao, t.data, t.concluido);
+        })
+              container.appendChild(tr);
+      }
+  }
 
     removerTarefa(tarefaId) {
         // Obtém o usuário logado e a lista de usuários
@@ -109,13 +109,6 @@ export class TarefaViewer {
         const col = document.createElement('div');
         col.className = 'col-md-2'
         div.appendChild(col);
-
-        const classe_titulo = document.createElement('input');
-        classe_titulo.className = 'form-control titulo'
-        classe_titulo.placeholder = 'Título'
-        classe_titulo.type = 'text';
-        col.appendChild(classe_titulo);
-        
 
         const opcoes = [
             { value: "Sim", texto: 'Sim' },
@@ -161,9 +154,11 @@ export class TarefaViewer {
                 const buttons = document.getElementById('buttons');
                 const btnAtualizar = document.createElement('button');
                 btnAtualizar.id = 'btnAtualizar'; 
-                buttons.appendChild(btnAtualizar);
+                buttons.appendChild(btnAtualizar);  
+         
 
-            btnAtualizar.addEventListener('click', () => {
+
+            document.getElementById('btnAtualizar').addEventListener('click', () => {
                     // Obtém o usuário logado e a lista de usuários
                     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
                     const listaUsuarios = JSON.parse(localStorage.getItem('listausers')); 
@@ -178,11 +173,8 @@ export class TarefaViewer {
                     tarefaAtualizada.marcarConcluida(selectElement.value)
                     tarefaAtualizada.setId(id);
                    
-                    if(selectElement.value === 'Sim'){
-                        tarefaAtualizada.marcarConcluida();
-                    }else{
-                        tarefaAtualizada.marcarnaoConcluida()
-                    }
+                selectElement.value === 'Sim' ? tarefaAtualizada.marcarConcluida() : tarefaAtualizada.marcarnaoConcluida();
+                  
                     
                     if (Array.isArray(usuarioLogado.tarefas)) {
                         usuarioLogado.tarefas = usuarioLogado.tarefas.map(tarefa =>
