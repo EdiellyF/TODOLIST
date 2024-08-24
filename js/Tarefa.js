@@ -63,20 +63,37 @@ export class TarefaViewer {
                     <button id="remover" data-id="${t.id}"></button>
                 </td>
                 <td>
-                <button id="editar" data-id="${t.id}"></button>
             `;
             
-            container.appendChild(tr)
-         
-        // Adiciona o evento de clique ao botão de remoção
-        document.getElementById('remover').addEventListener('click', () => {
+            // Botão de remover tarefa
+            const tdRemove  = document.createElement('td');
+            const removeButton = document.createElement('button');
+            // removeButton.className = 'btn btn-danger';
+            removeButton.id = 'remover'
+            // removeButton.textContent = 'Remover';
+            removeButton.dataset.id = t.id;
+            tdRemove.appendChild(removeButton);
+            tr.appendChild(tdRemove);
+
+
+
+          // Adiciona o evento de clique ao botão de remoção
+          removeButton.addEventListener('click', () => {
             this.removerTarefa(t.id);
             container.removeChild(tr);
       });
+        // Botão de adicionar tarefa
+        const tdAdicionar = document.createElement('td');
+        const editarTarefas = document.createElement('button');
+        editarTarefas.className = 'btn btn-sucess';
+        editarTarefas.id = 'editar'
+        editarTarefas.textContent = 'Editar';
 
-      // Adiciona o evento de clique ao botão de edição
-      document.getElementById('editar').addEventListener('click',() => {
-            this.editarTarefas(t.id, t.titulo, t.descricao, t.data, t.concluido);
+        editarTarefas.dataset.id = t.id;
+        tdAdicionar.appendChild(editarTarefas);
+        tr.appendChild(tdAdicionar);
+        editarTarefas.addEventListener('click',() => {
+            this.editarTarefas(t.id, t.titulo, t.descricao, t.data);
         })
               container.appendChild(tr);
       }
