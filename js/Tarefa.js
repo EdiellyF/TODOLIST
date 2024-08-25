@@ -59,10 +59,6 @@ export class TarefaViewer {
                 <td>${t.descricao}</td>
                 <td class="id-data">${t.data}</td>
                 <td class="concluido-task">${t.concluido ? "Sim" : "não"}</td>
-                <td>
-                    <button id="remover" data-id="${t.id}"></button>
-                </td>
-                <td>
             `;
             
             // Botão de remover tarefa
