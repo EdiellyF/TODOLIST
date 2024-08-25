@@ -68,9 +68,7 @@ export class TarefaViewer {
             // Botão de remover tarefa
             const tdRemove  = document.createElement('td');
             const removeButton = document.createElement('button');
-            // removeButton.className = 'btn btn-danger';
             removeButton.id = 'remover'
-            // removeButton.textContent = 'Remover';
             removeButton.dataset.id = t.id;
             tdRemove.appendChild(removeButton);
             tr.appendChild(tdRemove);
@@ -85,10 +83,8 @@ export class TarefaViewer {
         // Botão de adicionar tarefa
         const tdAdicionar = document.createElement('td');
         const editarTarefas = document.createElement('button');
-        editarTarefas.className = 'btn btn-sucess';
         editarTarefas.id = 'editar'
-        editarTarefas.textContent = 'Editar';
-
+        
         editarTarefas.dataset.id = t.id;
         tdAdicionar.appendChild(editarTarefas);
         tr.appendChild(tdAdicionar);
@@ -181,7 +177,7 @@ export class TarefaViewer {
                     const listaUsuarios = JSON.parse(localStorage.getItem('listausers')); 
                 
                     const tarefaAtualizada = new Tarefa(
-                        classe_titulo.value,
+                        document.getElementById('titulo').value,
                         document.getElementById('descricaoConsulta').value,
                         `${document.getElementById('diaConsulta').value}/
                         ${document.getElementById('mesConsulta').value}/
