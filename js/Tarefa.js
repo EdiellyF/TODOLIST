@@ -42,7 +42,6 @@ export class Tarefa {
 
 export class TarefaViewer {
     constructor(agenda) {
-        console.log('Agenda inicial:', agenda);
        this.tarefa = agenda;
     }
 
@@ -214,9 +213,18 @@ export class TarefaViewer {
             if (tarefa.descricao) {
                 tarefasFiltradas = tarefasFiltradas.filter(t => t.descricao.includes(tarefa.descricao));
             }
-            if (tarefa.data) {
-                tarefasFiltradas = tarefasFiltradas.filter(t => t.data === tarefa.data);
-            }
+            // Filtragem por data (ano, mês, dia)
+        if (tarefa.data) {
+            const [anoFiltro, mesFiltro, diaFiltro] = tarefa.data.split('-');
+
+            tarefasFiltradas = tarefasFiltradas.filter(t => {
+                const [ano, mes, dia] = t.data.split('/');
+                
+                return (!anoFiltro || ano === anoFiltro) &&
+                    (!mesFiltro || mes === mesFiltro) &&
+                    (!diaFiltro || dia === diaFiltro);
+            });
+    }
         
             return tarefasFiltradas;
         }

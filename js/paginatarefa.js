@@ -101,11 +101,13 @@ document.addEventListener("DOMContentLoaded", function() {
           ${document.getElementById('anoConsulta').value}`;
 
           const descricao = document.getElementById('descricaoConsulta').value;
+          const titulo = document.getElementById('titulo').value;
 
     // Criar um objeto de tarefa para a filtragem
         const tarefa = {
             data: data.trim(),  
-            descricao: descricao,
+            descricao: descricao.trim(),
+            titulo: titulo
           };
        // Obter a lista de tarefas do usuário logado
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
@@ -119,7 +121,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Exibir ou processar as tarefas filtradas conforme necessário
     console.log('t',tarefasFiltradas);
-        
+
+    const container = document.getElementById('viewTarefas');
+    container.innerHTML = "";
+
+    tarefasFiltradas.forEach(t => {
+      
+
+        tr.innerHTML = `
+        <td class="id-task">${t.id}</td>
+        <td class="titulo-task">${t.titulo}</td>
+        <td>${t.descricao}</td>
+        <td class="id-data">${t.data}</td>
+        <td class="concluido-task">${t.concluido ? "Sim" : "não"}</td>
+    `;
+
+    container.appendChild(tr);
+
+    });
+
         }
 
        document.getElementById('pesquisar').addEventListener('click', pesquisarTarefa);
